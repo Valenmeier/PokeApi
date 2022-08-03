@@ -1,0 +1,305 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-width: 100vw;
+    overflow-x: hidden;
+    font-family: Josefin Sans;
+}
+
+/* temas */
+.temaPikachu {
+    --principal:#f5ee9e;
+    --secundario:#2f2d2e;
+    --letras:#fff;
+    --titulo:#2f2d2e;
+}
+.temaArticuno {
+    --principal:#74d4f4;
+    --secundario:#6263ac;
+    --letras:#caf0f8;
+    --titulo:#5d1b86;
+}
+.temaArceus {
+    --principal:#ece51e;
+    --secundario:#0a0a0a;
+    --letras:#ffffff;
+    --titulo:#4c4747;
+}
+.header {
+    height: 10vh;
+    background-color: var(--principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5vw;
+}
+.logo-pokeball{
+    width: 15vw;   
+    height: auto; 
+}
+.logo h1 {
+    color: var(--titulo);
+    margin-top: .8vw;
+    font-size: 8vw;
+}
+.barrasLaterales{
+    position: absolute;
+    right: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.barrasLaterales {
+    font-size: 8vw;
+    color: var(--titulo);
+}
+.barraDeNavegacion {
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+   
+}
+.fondo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: start;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    transition:all 1s;
+    opacity: 0;
+    z-index: -1000;
+}
+.menu {
+    display: flex;
+    justify-content: space-around;
+    gap: 2vw;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+    background-color: var(--principal);
+    padding-top: 10vw;
+    padding-bottom: 20vw;
+    font-size: 9vw;
+    transition: all 2s;
+    transform: translateX(-100vw);
+    color: var(--titulo);
+    z-index: 1000;
+}
+.textoMenu {
+    opacity: 0;
+}
+
+.aparecerMenu {
+    z-index: 1000;
+    opacity: 1;
+}
+.transladarMenu{
+    transition:all 1s;
+    transform: translateX(0vw);
+    position: absolute;
+}
+.inyectar {
+    position: relative;
+    width: 100vw;
+    min-height: 90vh;
+}
+.pantallaDeCarga {
+    width: 100vw;
+    height: 90vh;
+    font-size: 5vw;
+    background-color: var(--secundario);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10vw;
+    color: var(--letras);
+}
+.pantallaDeCarga img {
+    width: 40vw;
+}
+.loader{
+    width: 25vw;
+    height: 25vw;
+    border-radius: 50vw;
+    border: 2.5vw solid var(--principal);
+    border-top: 2.5vw solid var(--secundario);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotar .5s infinite linear;
+}
+
+.temasAelegir {
+    width: 100vw;
+    height: 90vh;
+    background-color: var(--secundario);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.tituloTemas{
+    color: var(--principal);
+    font-size: 10vw;
+    position: absolute;
+    top: 8vh;
+}
+.listaTemas{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+}
+.listaTemas li {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100vw;
+    height: 15vh;
+}
+.fondos{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.articuno {
+    width: 100vw;
+    height: 15vh;
+    background-color: #0096c7;
+    overflow: hidden;
+}
+.arceus {
+    width: 100vw;
+    height: 15vh;
+    background-color: #0096c7;
+    overflow: hidden;
+}
+.imagenFondoArceus{
+    object-position: top;
+}
+.pikachu{
+    width: 100vw;
+    height: 15vh;
+    background-color: #0096c7;
+    overflow: hidden;
+}
+.nombreYfondo {
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    height: 15vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    font-size: 8vw;
+    color: var(--principal);
+    transition: all 1s;
+    opacity: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.gifArticuno {
+    width: 60vw;
+}
+.gifArceus {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    object-position: top;
+}
+.gifPikachu {
+    width: 30vw;
+}
+.aparecerAnimaciones {
+    display: flex;
+    opacity: 1;
+}
+.pokedex {
+    width: 100vw;
+    height: 90vh;
+    background:conic-gradient(rgb(192, 186, 186), var(--principal), #fff, var(--principal), rgb(192, 186, 186));   
+    display: grid;
+    grid-template-columns: repeat(5,20%);
+    grid-template-rows: repeat(10,10%);
+}
+.carta {
+    width: 100%;
+    height: 100%;
+    grid-row: 2/7;
+    grid-column: 2/5;
+    background-color: rgb(79, 79, 79);
+}
+.botonesPokedex {
+    width: 100%;
+    height: 100%;
+    grid-column: 1/6;
+    grid-row: 7 /11;
+    background:conic-gradient(from 90deg at 20 0, var(--secundario), var(--principal));  
+    display: grid;
+    grid-template-columns: repeat(4,25%);
+    grid-template-rows: repeat(4,25%);
+    font-size: 5vw;
+}
+.botonCaptura {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 1/3;
+    grid-row: 2/4;
+    
+}
+.botonCaptura button {
+    width: 15vh;
+    height: 15vh;
+    border-radius: 50%;
+    font-size: 5vw;
+    color: #fff;
+    background-color: #3ba55b;
+    outline: 1vw solid #000;
+}
+.botonSiguiente {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 3/6;
+    grid-row: 2/4;
+    
+}
+.botonSiguiente button {
+    width: 15vh;
+    height: 15vh;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 5vw;
+    color: #fff;
+    background-color: #0b1e9a;
+    outline: 1vw solid #000;
+}
+@keyframes rotar {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
