@@ -115,15 +115,75 @@ let desanimar=(objeto)=> {
     objeto.style.opacity=0
 }
 
-//* llamar api para random pokemon
-let llamarApi=axios(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
+let buscarPokemones=()=> {
+    
+}
 
-//*Función que pone numeros random entre 0 y 1153 --> cantidad de pokemons 
+//* llamar api para random pokemon
 let numerosRandom=(min,max)=>{
      min= Math.ceil(min)
      max=Math.floor(max)
      return Math.floor(Math.random()*(max-min+1)+min)
     }
-
+let obtenerPokeRandom=async()=>{
+    let llamarAapi= axios(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
+    let pokemon=await llamarAapi.then(res=>res.data.results[numerosRandom(0,1153)].url)
+    let buscarPokemon=axios(`${pokemon}`)
+    let pokemonDado=await buscarPokemon.then(res=>res.data)
+    return pokemonDado
+}
 
 console.log(`Se ha completado`)
+
+
+//*Botones
+let botonBuscar=document.querySelector(`.botonSiguiente button`)
+//* Secciones del html
+let avisoDeInicio=document.querySelector(`.avisoDeInicio`)
+let cargaDeCarta=document.querySelector(`.cargandoCarta`)
+let mostrarCarta= document.querySelector(`.mostrarCarta`)
+let pokemonImagen= document.querySelector(`.pokemonImagen`)
+let nombreCarta= document.querySelector(`.nombreCarta h4`)
+let ataque= document.querySelector(`.estadisticaDeAtaque`)
+let defensa=document.querySelector(`.estadisticaDeDefensa`)
+let especial=document.querySelector(`.estadisticaDeEspecial`)
+
+let cambiarCarta=async()=>{
+   let pokemon=await obtenerPokeRandom()
+   cargaDeCarta.classList.remove(`activarSeccionCarta`)
+   mostrarCarta.classList.add(`activarSeccionCarta`)
+   return pokemon
+}
+let llamarPokemon=async()=>{
+    setTimeout(async () => {
+        let pokemon = await cambiarCarta()
+        let recuperarImagen = pokemon.sprites.other[`official-artwork`].front_default || pokemon.sprites.other.home.front_default|| pokemon.sprites.back_default||`../Multimedia/noEncontrado.jpg`
+        pokemonImagen.src = `${await recuperarImagen}`
+        let nombrePokemon = pokemon.name
+        nombreCarta.innerHTML = nombrePokemon[0].toUpperCase() + nombrePokemon.substring(1)
+        ataque.innerHTML = pokemon.stats[1].base_stat
+        defensa.innerHTML = pokemon.stats[2].base_stat
+        especial.innerHTML = pokemon.stats[3].base_stat
+        if(ataque.innerHTML>=100){
+            pokemonImagen.style.background=`url("../Multimedia/fondoPokeon.gif") 100% 100% / cover, center center`
+        }else{
+            pokemonImagen.style.background=`#000`
+        }
+    }, 1800)
+    setTimeout(()=>{
+        mostrarCarta.style.opacity=1
+    },2200)
+}
+let manipularSecciones=async()=>{
+    mostrarCarta.style.opacity=0
+    avisoDeInicio.classList.remove(`activarSeccionCarta`)
+    mostrarCarta.classList.remove(`activarSeccionCarta`)
+    cargaDeCarta.classList.add(`activarSeccionCarta`)
+    await llamarPokemon()
+}
+
+let buscarPokemon=()=>{
+    manipularSecciones()
+}
+
+botonBuscar.addEventListener(`click`,buscarPokemon)

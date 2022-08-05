@@ -243,7 +243,56 @@
     height: 100%;
     grid-row: 2/7;
     grid-column: 2/5;
-    background-color: rgb(79, 79, 79);
+    background-image: url(../Multimedia/logo.gif);
+    background-position: center;
+    outline: 1vw solid var(--secundario);
+}
+.mostrarCarta {
+    width: 100%;
+    height: 100%;
+    background-color: #0096c7;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transition: all 1s;
+}
+.pokemonImagen{
+    width: 100%;
+    height: 65%;
+    object-fit: cover;
+    object-position: center;
+}
+.nombreCarta {
+    height: 15%;
+    width: 100%;
+    background-color: var(--secundario);
+    color: var(--principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 7vw;
+    overflow: hidden;
+    text-align: center;
+}
+.estadisticasCarta{
+    width: 100%;
+    height: 20%;
+    background-color: var(--principal);
+    color: var(--secundario);
+    display: flex;
+    justify-content: space-evenly;
+}
+.estadisticas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.estadisticas h4{
+    font-size: 5vw;
+}
+.estadisticas p{
+    font-size: 4vw;
 }
 .botonesPokedex {
     width: 100%;
@@ -274,6 +323,7 @@
     color: #fff;
     background-color: #3ba55b;
     outline: 1vw solid #000;
+    cursor: pointer;
 }
 .botonSiguiente {
     width: 100%;
@@ -294,7 +344,41 @@
     color: #fff;
     background-color: #0b1e9a;
     outline: 1vw solid #000;
+    cursor: pointer;
 }
+.avisoDeInicio{
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: var(--secundario);
+    background:linear-gradient( to bottom, var(--principal), #eee, var(--principal));
+    padding: 8vw;
+    font-size: 8vw;
+    text-align: center;
+    font-size: 7vw;
+}
+.avisoDeInicio img {
+    height: 18vh;
+}
+.cargandoCarta{
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.cargandoCarta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.activarSeccionCarta{
+    display: flex;
+}
+
 @keyframes rotar {
     0%{
         transform: rotate(0deg);
