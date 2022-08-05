@@ -39,3 +39,43 @@ let temas=`<section class="temasAelegir">
     </li>
 </ul>
 </section>`
+let captura=` <section class="pokedex">
+<div class="carta">
+    <div class="mostrarCarta">
+        <img class="pokemonImagen" src="" alt="pokemon">
+        <div class="nombreCarta">
+            <h4>Palkia</h4>
+        </div>
+        <div class="estadisticasCarta">
+            <div class="estadisticas">
+                <h4 class="estadisticaDeAtaque">85</h4>
+                <p>Ataque</p>
+            </div>
+            <div class="estadisticas">
+                <h4 class="estadisticaDeEspecial">45</h4>
+                <p>Especial</p>
+            </div>
+            <div class="estadisticas">
+                <h4 class="estadisticaDeDefensa">20</h4>
+                <p>Defensa</p>
+            </div>
+        </div>
+    </div>
+    <div class="avisoDeInicio activarSeccionCarta">
+        <img class="bichoDeCarga" src="" alt="imagen-de-Carga">
+        <h4>Pulsa buscar pokemón para comenzar</h4>
+    </div>
+    <div class="cargandoCarta">
+        <img src="./Multimedia/cargaPokeball.gif" alt="pokeball">
+    </div>
+</div>
+<div class="botonesPokedex">
+    <div class="poderTotal"><h4>Poder Total=</h4><h5 class="cantidadDePoder"></h5></div>
+    <div class="botonCaptura">
+        <button>Capturar</button>
+    </div>
+    <div class="botonSiguiente">
+        <button>Buscar <br>pokemón</button>
+    </div>
+</div>
+</section>`
