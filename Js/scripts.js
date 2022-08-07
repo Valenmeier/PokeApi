@@ -236,7 +236,7 @@ let llamarPokemon=async()=>{
                fondoPokedex.style.background=`url("../Multimedia/truenos.gif") 100% 100% / cover, center center`
            }
        }else{
-           pokemonImagen.style.background=`#000`
+           pokemonImagen.style.background=`url("../Multimedia/fondoComunes.jpg") 100% 100% / cover, center center`
            fondoPokedex.background=`conic-gradient(rgb(192, 186, 186), var(--principal), #fff, var(--principal), rgb(192, 186, 186));`
        }
    }, 1800)
@@ -267,16 +267,22 @@ botonCapturar.addEventListener(`click`,()=>{
 })
 
 }
-
-//* Ejecuciones al inicio
-let iniciar=()=>{
-    carga()
-    setTimeout(capturar,1000)
+//* Capturados
+let seccionSinPokemones=document.querySelector(`.noCapturoNinguno`)
+let pokemonesCapturados=JSON.parse(localStorage.getItem(`caja`))
+let cantidadDePokemones=pokemonesCapturados.length
+if(cantidadDePokemones>=0){
+    seccionSinPokemones.classList.toggle(`activarFondoCapturados`)
 }
-iniciar()
-capturarMenu.addEventListener(`click`,()=>{
-    iniciar()
-    activarDesactivarMenu()
-    fondoDeshabilitar()
-})
+//* Ejecuciones al inicio
+// let iniciar=()=>{
+//     carga()
+//     setTimeout(capturar,1000)
+// }
+// iniciar()
+// capturarMenu.addEventListener(`click`,()=>{
+//     iniciar()
+//     activarDesactivarMenu()
+//     fondoDeshabilitar()
+// })
 
