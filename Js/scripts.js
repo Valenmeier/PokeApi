@@ -274,6 +274,28 @@ let cantidadDePokemones=pokemonesCapturados.length
 if(cantidadDePokemones>=0){
     seccionSinPokemones.classList.toggle(`activarFondoCapturados`)
 }
+//* filtro Capturados cambiar
+let botonFiltrosAvanzados=document.querySelector(`.busquedaAvanzadaCapturados h4`),
+    contenedorDeFiltros=document.querySelector(`.contenedorFiltros`),
+    busquedaNormal=document.querySelector(`.busquedaPorNombre`)
+    busquedaAvanzada=document.querySelector(`.busquedaAvanzadaSeccion`)
+
+botonFiltrosAvanzados.addEventListener(`click`,()=>{
+    let activado=document.querySelector(`.activarDesactivar`)
+
+    if(activado.innerHTML==`OFF`){
+        activado.innerHTML=`ON`
+        activado.style.color=`green`
+        busquedaNormal.style.display=`none`
+        busquedaAvanzada.style.display=`grid`
+    }else{
+        activado.innerHTML=`OFF`
+        activado.style.color=`red`
+        busquedaNormal.style.display=`flex`
+        busquedaAvanzada.style.display=`none`
+    }
+})
+
 //* Ejecuciones al inicio
 // let iniciar=()=>{
 //     carga()
