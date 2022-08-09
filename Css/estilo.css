@@ -769,5 +769,32 @@ color: #4faf38;
     margin-top: 4vw;
 }
 .eliminarBuscarFiltros {
-    height: 30vh;
+    height: auto;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+    align-items: center;
+    margin-top: 7vw;
+    margin-bottom: 7vw;
+}
+.eliminarBuscarFiltros button {
+    width: 80vw;
+    height: 10vw;
+    font-size: 5vw;
+    border-radius: 10vw;
+}
+.EliminarFiltros {
+    background-color: rgb(202, 64, 64);
+    color: #fff;
+}
+.AplicarFiltros {
+    background-color: #175329;
+    color: #fff;
+}
+.nombreFiltroMegavanzado{
+    gap: .2vw;
+    font-size: 5vw;
+    margin-top: 6vw;
+    height: 5vw;
 }
