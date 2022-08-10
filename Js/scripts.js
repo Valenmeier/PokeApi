@@ -268,9 +268,10 @@ botonCapturar.addEventListener(`click`,()=>{
 
 }
 //* Capturados
-let seccionSinPokemones=document.querySelector(`.noCapturoNinguno`)
+
 let pokemonesCapturados=JSON.parse(localStorage.getItem(`caja`))
 let cantidadDePokemones=pokemonesCapturados.length
+let seccionSinPokemones=document.querySelector(`.noCapturoNinguno`)
 if(cantidadDePokemones>=0){
     seccionSinPokemones.classList.toggle(`activarFondoCapturados`)
 }
@@ -294,6 +295,91 @@ botonFiltrosAvanzados.addEventListener(`click`,()=>{
         busquedaNormal.style.display=`flex`
         busquedaAvanzada.style.display=`none`
     }
+})
+//* Agregar al dom pokemones
+let contenedorCapturados=document.querySelector(`.pokemonesCapturados`)
+let misPokemones=[]
+
+let llamarPokemones=async()=>{
+    misPokemones=[]
+    for(pokemon in pokemonesCapturados){
+         await axios(`https://pokeapi.co/api/v2/pokemon/${pokemonesCapturados[pokemon]}`)    
+        .then(data=>crearCarta(data))
+    }
+}
+let crearCarta=async(pokeObjeto)=>{
+     misPokemones.push(new Carta(pokeObjeto.data.name,calcularPeso(pokeObjeto),devolverImagen(pokeObjeto),calcularAltura(pokeObjeto),await calcularPoder(pokeObjeto),devolverTipos(pokeObjeto),pokeObjeto.data.id))
+}
+let calcularPoder=async(pokemon)=>{
+    let poderTotal= await pokemon.data.stats[0].base_stat+
+    await pokemon.data.stats[1].base_stat+
+    await pokemon.data.stats[2].base_stat+
+    await pokemon.data.stats[3].base_stat+
+    await pokemon.data.stats[4].base_stat+
+    await pokemon.data.stats[5].base_stat;
+    return await poderTotal
+}
+let calcularAltura=(pokemon)=>{
+    let altura=`${(pokemon.data.height)/10} m`
+    return altura
+}
+let devolverImagen=(pokemon)=>{
+    let imagen=pokemon.data.sprites.other[`official-artwork`].front_default || pokemon.data.sprites.other.home.front_default|| pokemon.data.sprites.back_default||`../Multimedia/noEncontrado.jpg`
+    return imagen
+}
+let calcularPeso=(pokemon)=>{
+    let peso=`${(pokemon.data.weight)/10} kg`
+    return peso
+}
+let devolverTipos=(pokemon)=>{
+    let guardarTipos=[]
+    let accesoATipos=pokemon.data.types
+    for(tipos of accesoATipos){
+        guardarTipos.push(tipos.type.name) 
+    }
+    return guardarTipos
+}
+
+let aplicarFiltros=()=>{
+    let valorBusquedaNormal=document.querySelector(`.buscarNombre`).value
+    let filtrosAplicados=filtros=>{
+        let nombreDelPokemon=filtros.nombre
+        if (nombreDelPokemon.includes(valorBusquedaNormal)){
+           return filtros
+        }
+    }
+     
+    let plasmarCarta=()=>{
+        contenedorCapturados.innerHTML=""
+        let aplicarFiltros=misPokemones.filter(filtrosAplicados)
+        for(carta in aplicarFiltros){
+            let crearSeccion=`<div class="cartaPokemon">
+            <div class="imagenDelPokemonCapturado">
+                <img src="${aplicarFiltros[carta].imagen}" alt="${aplicarFiltros[carta].nombre}">
+            </div>
+            <div class="tipoDePokemon">
+            </div>
+            <div class="nombreDelPokemonCapturado">
+                <h4>${aplicarFiltros[carta].nombre}</h4>
+            </div>
+        </div>`
+        contenedorCapturados.innerHTML+=crearSeccion
+        }
+    }
+    plasmarCarta()
+    buscarNombreNormal.addEventListener(`keyup`,plasmarCarta())
+}
+
+
+let mostrarCapturados=async()=>{
+    await llamarPokemones()
+    aplicarFiltros()
+}
+
+mostrarCapturados()
+let buscarNombreNormal=document.querySelector(`.buscarNombre`)
+buscarNombreNormal.addEventListener(`keyup`,()=>{
+   aplicarFiltros()
 })
 
 //* Ejecuciones al inicio

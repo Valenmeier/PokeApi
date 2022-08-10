@@ -79,3 +79,16 @@ let captura=` <section class="pokedex">
     </div>
 </div>
 </section>`
+let filtroCaptura=``
+
+class Carta {
+    constructor(nombre,peso,imagen,altura,poder,tipo,id){
+        this.nombre=nombre
+        this.peso=peso
+        this.imagen=imagen
+        this.tipo=tipo
+        this.altura=altura
+        this.poder=poder
+        this.id=id
+    }
+}
